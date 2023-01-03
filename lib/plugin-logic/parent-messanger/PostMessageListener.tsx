@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { IFrameActions } from "@lib/plugin-logic/plugin-context";
 import { get } from "lodash";
-import { useRouter } from "next/router";
 
 // In case you want to act upon message recevied from the IFrame.
 export const PostMessageListener = () => {
-  const history = useRouter();
   useEffect(() => {
     window.addEventListener("message", (event) => {
       // Accept only specific origins messages.
@@ -28,12 +26,6 @@ export const PostMessageListener = () => {
       }
       if (action === IFrameActions.COOKIE) {
         console.warn("hello world", data);
-      }
-      if (action === IFrameActions.NAVIGATION) {
-        const path = get(data, "path");
-        // console.log("i ran before", path);
-        path && history.replace(path);
-        // console.log("i ran after", path);
       }
     });
   }, []);
