@@ -215,6 +215,7 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
     getIFrameRoute,
     isInIFrameRoute,
     navigate,
+    navigateParent,
     sendCookie,
     iframeSrc,
   };

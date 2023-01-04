@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { IFrameRouterContext } from "@lib/plugin-logic/plugin-context";
+import { useRef, useState, useEffect, useContext } from "react";
 import landingPic from "@assets/webp/landing.webp";
 import logo from "@assets/png/logo.png";
 import pic1 from "@assets/png/1.png";
@@ -11,7 +12,7 @@ import pic5 from "@assets/png/5.png";
 
 function Home() {
   const IframeRef = useRef(null);
-
+  const iframeRouterContext = useContext(IFrameRouterContext);
   useEffect(() => {
     // sendMessage();
   }, []);
@@ -29,9 +30,45 @@ function Home() {
               height={50}
             />
             <ul className=" flex space-x-6">
-              <li className="text-xs">Home</li>
-              <li className="text-xs">About</li>
-              <li className="text-xs">Contact</li>
+              <button
+                className="text-xs "
+                onClick={() =>
+                  // @ts-ignore
+                  iframeRouterContext.navigateParent({
+                    path: "/",
+                    isIFrame: false,
+                    displayedURL: "/",
+                  })
+                }
+              >
+                Home
+              </button>
+              <button
+                className="text-xs"
+                onClick={() =>
+                  // @ts-ignore
+                  iframeRouterContext.navigateParent({
+                    path: "/about",
+                    isIFrame: false,
+                    displayedURL: "/about",
+                  })
+                }
+              >
+                About
+              </button>
+              <button
+                className="text-xs"
+                onClick={() =>
+                  // @ts-ignore
+                  iframeRouterContext.navigateParent({
+                    path: "/about",
+                    isIFrame: false,
+                    displayedURL: "/about",
+                  })
+                }
+              >
+                Contact
+              </button>
             </ul>
           </div>
           <div className="flex space-x-8 items-center">
