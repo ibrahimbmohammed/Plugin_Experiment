@@ -86,6 +86,46 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
     }
   };
 
+  const navigateParent = ({
+    path,
+    isIFrame,
+    displayedURL,
+  }: {
+    path: string;
+    isIFrame: boolean;
+    displayedURL: string;
+  }) => {
+    // Stop navigation to the same path.
+    const currentPath = window.location.pathname;
+    console.log("ins nav func", currentPath, isIFrame);
+    if (
+      (isIFrame && displayedURL === currentPath) ||
+      (!isIFrame && path === currentPath)
+    ) {
+      return;
+    }
+
+    if (isIFrame) {
+      setIframeVisibility(true);
+      if (iframeRef.current) {
+        // @ts-ignore
+        window.parent.postMessage(
+          {
+            action: IFrameActions.NAVIGATION,
+            path,
+          },
+          window?.location?.ancestorOrigins?.[0]
+        );
+        //history.push(displayedURL);
+        router.push(displayedURL);
+      }
+    } else {
+      setIframeVisibility(false);
+      //history.push(path);
+      router.push(path);
+    }
+  };
+
   const sendCookie = ({ isIFrame = true }) => {
     // Stop navigation to the same path.
     // const currentPath = window.location.pathname;

@@ -18,8 +18,9 @@ export const PostMessageListener = () => {
       console.log("hello world event ===>", event?.origin);
       console.log(
         "hello world event loc===>",
-        window?.location?.ancestorOrigins
+        window?.location?.ancestorOrigins?.[0]
       );
+
       // Example of acting on a messages from the child iframe.
       if (action === IFrameActions.REFRESH) {
         window.location.reload();
