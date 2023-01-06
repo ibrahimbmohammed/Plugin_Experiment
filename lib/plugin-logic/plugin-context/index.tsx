@@ -88,7 +88,7 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
 
   const navigateParent = ({
     path,
-    isIFrame,
+    isIFrame = true,
     displayedURL,
   }: {
     path: string;
