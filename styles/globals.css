@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+.root,
+#root,
+#docs-root {
+  --color-primaryText: #000000;
+  --color-secondaryText: #ffffff;
+  --color-primaryColor: #0d9589;
+  --color-secondaryColor: #afafaf;
+  --font-name: "Montserrat";
+  /* --conference-hero-background-image: url('/assets/png/Rectangle919.png') */
+}
+
 html,
 body {
   padding: 0;
@@ -26,5 +37,58 @@ a {
   body {
     color: white;
     background: black;
+  }
+}
+
+.content {
+  flex: 1;
+  height: 100%;
+}
+.content .iframe-container {
+  flex: 1;
+  height: 100%;
+}
+.content .iframe-container iframe {
+  width: 100vw !important;
+  height: 100vh !important;
+  box-sizing: border-box;
+  border: 15px solid red;
+}
+
+.iframe-invisible {
+  visibility: hidden;
+}
+
+@layer base {
+  html {
+    @apply overflow-x-hidden overscroll-y-auto;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.dashboard-content {
+  position: absolute;
+  height: fit-content !important;
+  width: calc(100% - 16.5rem);
+  left: 16.5rem;
+}
+
+@media (min-device-width: 480px) and (max-device-width: 800px) {
+  .dashboard-content {
+    position: absolute;
+    height: 100%;
+    height: fit-content !important;
+    width: calc(100% - 7.5rem);
+    left: 7.5rem;
+  }
+  .dashboard__content_shift {
+    position: absolute;
+    height: 100%;
+    height: fit-content !important;
+    width: calc(100% - 16.5rem);
+    left: 16.5rem;
   }
 }

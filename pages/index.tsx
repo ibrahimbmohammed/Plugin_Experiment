@@ -1,50 +1,33 @@
 import Link from "next/link";
+import { useContext } from "react";
 import { useRef, useState, useEffect } from "react";
+import HomeWrapper from "@hoc/home-wrapper";
+import { get } from "lodash";
+import { IFrame } from "@organisms/o-Iframe";
+import { useRouter } from "next/router";
+import { IFrameRouterContext } from "@lib/plugin-logic/plugin-context";
+
+const IFrameActions = {
+  NAVIGATION: "NAVIGATION",
+  REFRESH: "REFRESH",
+};
 
 function Home() {
-  const IframeRef = useRef(null);
-
-  const sendMessage = () => {
-    if (!IframeRef.current) return;
-
-    // @ts-ignore
-    IframeRef.current.contentWindow.postMessage(
-      "hello son",
-      "https://preeminent-zuccutto-747fd5.netlify.app/"
-    );
-  };
-
-  const [recievedMessage, setRecievedMessage] = useState("");
+  const iframeRouterContext = useContext(IFrameRouterContext);
 
   useEffect(() => {
-    window.addEventListener("message", function (e) {
-      setRecievedMessage("got from parent " + " " + e.data);
-    });
-  }, [recievedMessage]);
-
-  useEffect(() => {
-    sendMessage();
+    setTimeout(() => {
+      console.log("hi i ran not on index");
+      iframeRouterContext.sendCookie();
+      // sendMessage();
+    }, 2000);
   }, []);
 
   return (
-    <div className="w-full  h-[100vh] bg-gray-500 flex items-center justify-center">
-      {/* <div className="flex items-center justify-between h-5 w-full bg-slate-500">
-      </div> */}
-      {/* <button onClick={() => sendMessage()}>send message to child</button> */}
-      {/* <Link href="/login">Log in</Link> */}
-
-      <div className="">from child peddlesoft: {recievedMessage}</div>
-      {/* <iframe
-        ref={IframeRef}
-        className="w-full h-[100%]"
-        id="inlineFrameExample"
-        title="Inline Frame Example"
-        width="w-full"
-        // height="h-screen"
-        src="https://preeminent-zuccutto-747fd5.netlify.app/"
-      ></iframe> */}
+    <div className="w-full  ">
+      <IFrame />
     </div>
   );
 }
 
-export default Home;
+export default HomeWrapper(Home);

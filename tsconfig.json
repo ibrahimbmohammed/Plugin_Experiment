@@ -1,20 +1,50 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "ES2017", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "es2020",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@atoms/*": ["components/atoms/*"],
+      "@molecules/*": ["components/molecules/*"],
+      "@organisms/*": ["components/organisms/*"],
+      "@pages/*": ["pages/*"],
+      "@lib/*": ["lib/*"],
+      "@services/*": ["services/*"],
+      "@helpers/*": ["helpers/*"],
+      "@store/*": ["store/slices/*"],
+      "@store": ["store"],
+      "@constants": ["lib/constants"],
+      "@types/*": ["lib/types/*"],
+      "@gentypes/*": ["lib/types/generated/*"],
+      "@hooks": ["hooks"],
+      "@styles/*": ["styles/*"],
+      "@utils/*": ["lib/utils/*"],
+      "@hoc/*": ["lib/hoc/*"],
+      "@assets/*": ["public/assets/*"],
+      "@apolloClient": ["apolloClient"],
+      "@apolloClientFactory": ["apolloClientFactory"],
+      "@graphql/*": ["lib/graphql/*"],
+      "@layout/*": ["components/layout/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/theme/utils.js",
+    "pages/api/conference/post-user-data-generate-conference-dpts"
+  ],
+  "exclude": ["node_modules", "lib/types/generated/index.ts"]
 }
