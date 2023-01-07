@@ -107,7 +107,7 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
 
     if (isIFrame) {
       setIframeVisibility(true);
-      if (iframeRef.current) {
+      if (isIFrame && currentPath) {
         // @ts-ignore
         window.parent.postMessage(
           {
@@ -116,7 +116,6 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
           },
           window?.location?.ancestorOrigins?.[0]
         );
-        console.log("domain==>", window?.location?.ancestorOrigins?.[0]);
         router.push(path);
       }
     } else {
