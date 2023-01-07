@@ -116,8 +116,8 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
           },
           window?.location?.ancestorOrigins?.[0]
         );
-        //history.push(displayedURL);
-        router.push(displayedURL);
+        console.log("domain==>", window?.location?.ancestorOrigins?.[0]);
+        router.push(path);
       }
     } else {
       setIframeVisibility(false);
