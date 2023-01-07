@@ -194,7 +194,7 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
     }
 
     if (iframeRef.current) {
-      console.log("the ref", iframeRef);
+      // console.log("the ref", iframeRef);
       // add a safety net
       // @ts-ignore
       iframeRef.current.onload = () => {
