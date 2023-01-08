@@ -13,16 +13,24 @@ export function middleware(request: NextRequest) {
   ) {
     return NextResponse.next();
   }
-  // const subdomain = request;
+  const subdomain = request;
   // console.log('req obj ========>', subdomain.headers.get('host'));
-  // console.log('req obj path222 =======>', subdomain.nextUrl.pathname);
+  console.log("req obj path222 =======>", subdomain.nextUrl.pathname);
   // console.log('req verdict =======>', cookieVerdict);
   // const cookieVerdict = request.cookies.has('organizationId');
   // if (!Cookies.get("organizationId")) {
   // Cookies.set("organizationId", "3", { sameSite: "None" });
   //}
-  console.log("hi");
-  const response = NextResponse.next();
+
+  if (subdomain.nextUrl.pathname === "/") {
+    //return NextResponse.rewrite(`${request.nextUrl.origin}/dashboard`);
+    return NextResponse.rewrite(new URL("/template-1", request.url));
+  } else if (subdomain.nextUrl.pathname === "/about") {
+    //return NextResponse.rewrite(`${request.nextUrl.origin}/dashboard`);
+    return NextResponse.rewrite(new URL("/template-1/about", request.url));
+  } else {
+    NextResponse.next();
+  }
   // response.cookies.set("organizationId", "3");
   //   response.cookies.set({
   //     name: "vercel",
