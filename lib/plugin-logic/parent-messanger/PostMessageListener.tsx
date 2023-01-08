@@ -15,7 +15,7 @@ export const PostMessageListener = () => {
       const action = get(data, "action");
       // const message = event && event.data;
       // onst action = message && message.action;
-      console.log("hello world event ===>", event?.origin);
+      // console.log("hello world event ===>", event?.origin);
       console.log(
         "hello world event loc===>",
         window?.location?.ancestorOrigins?.[0]
